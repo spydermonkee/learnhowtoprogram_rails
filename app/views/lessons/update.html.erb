@@ -1,4 +1,4 @@
-<h1 class="jumbotron"> Create new lesson</h1>
+<h1 class="jumbotron"> Edit the <%= @lesson.name %> lesson</h1>
   <% if @lesson.errors.any? %>
     <h4>Please correct these errors</h4>
     <ul>
@@ -9,7 +9,8 @@
   <% end %>
 
 
-<form class="form-inline" action="/lessons/new" method="post">
+<form class="form-inline" action="/lessons/<%= @lesson.id %>/edit" method="post">
+  <input name="_method" type="hidden" value="patch">
   <label for="name">Lesson Name</label>
   <input class="form-control" type="text" id="lesson_name" name="lesson[name]" placeholder="Lesson Name..." value="<%= @lesson.name %>"></input>
   <label for="number">Lesson Number</label>
@@ -17,9 +18,19 @@
   <br/> <br/> <br/>
   <p>
   <label for="content">Lesson Content</label>
-  <textarea class="form-control" name="lesson[content]" id="lesson_content" placeholder="Put your lesson here:" value="<%= @lesson.content %>"></textarea>
+  <textarea class="form-control" name="lesson[content]" id="lesson_content" placeholder="Put your lesson here:">
+    <% if @lesson.content %>
+      <%=@lesson.content%>
+    <% end %>
+  </textarea>
   </p>
-  <button class="btn btn-info">Create Lesson</button>
+  <button class="btn btn-info">Edit Lesson</button>
+</form>
+<br/>
+
+<form action="/lessons/<%= @lesson.id %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button data-confirm="Are you sure you would like to delete this lesson?" class='btn btn-danger'>Delete this Lesson</button>
 </form>
 <br/>
 

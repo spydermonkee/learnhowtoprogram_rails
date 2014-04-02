@@ -2,4 +2,22 @@
 
 <p><%= @lesson.content %></p>
 
-<a href= "/lessons">Main Menu</a>
+<form action="/lessons/<%= @lesson.id %>/edit" method="get">
+  <input id="edit_lesson" type="hidden"></input>
+  <button class='btn btn-warning'>Edit this Lesson</button>
+</form>
+
+<br/>
+<form action="/lessons" method="get">
+  <input id="main_menu" type="hidden"></input>
+  <button class='btn btn-success'>Main Menu</button>
+</form>
+<br/>
+<% if @lesson.next != nil %>
+  <a href="/lessons/<%= @lesson.next.id %>" class="btn btn-success" rel="nofollow">Next Lesson</a>
+<% end %>
+<br/><br/>
+
+<% if @lesson.previous != nil %>
+  <a href="/lessons/<%= @lesson.previous.id %>" class="btn btn-success" rel="nofollow">Previous Lesson</a>
+<% end %>

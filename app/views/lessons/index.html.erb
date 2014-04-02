@@ -6,4 +6,7 @@
   <% end %>
 </ul>
 
-<button class="btn btn-warning"><a href="/lessons/new">Create a new Lesson</a></button>
+<form action="/lessons/new" method="get">
+  <input id="create_lesson_link" type="hidden"></input>
+  <button class='btn btn-success'>Create a new Lesson</button>
+</form>
