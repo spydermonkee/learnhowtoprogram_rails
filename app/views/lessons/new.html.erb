@@ -1,0 +1,25 @@
+<h1 class="jumbotron"> Create new lesson</h1>
+  <% if @lesson.errors.any? %>
+    <h4>Please correct these errors</h4>
+    <ul>
+      <% @lesson.errors.full_messages.each do |message| %>
+        <li><%= message %> </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+
+<form class="form-inline" action="/lessons/new" method="post">
+  <label for="name">Lesson Name</label>
+  <input class="form-control" type="text" id="lesson_name" name="lesson[name]" placeholder="Lesson Name..." value="<%= @lesson.name %>"></input>
+  <label for="number">Lesson Number</label>
+  <input class="form-control" type="text" id="lesson_number" name="lesson[number]" placeholder="Lesson Number..." value="<%= @lesson.number %>"></input>
+  <br/> <br/> <br/>
+  <p>
+  <label for="content">Lesson Content</label>
+  <textarea class="form-control" name="lesson[content]" id="lesson_content" placeholder="Put your lesson here:" value="<%= @lesson.content %>"></textarea>
+  </p>
+  <button class="btn btn-info">Create Lesson</button>
+</form>
+
+<a href="/lessons">Main Menu</a>
